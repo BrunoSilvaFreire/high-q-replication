@@ -14,13 +14,22 @@ class HighQDomain with _$HighQDomain {
     String name,
     String domain,
     String clientId,
+    String redirectURI,
     String secret,
   ) = _HighQDomain;
 
   factory HighQDomain.fromJson(Map<String, Object?> json) =>
       _$HighQDomainFromJson(json);
-}
 
+}
+extension Utilities on HighQDomain {
+
+  static RegExp _uniqueNameExpression = RegExp("https:\/\/(?<subdomain>.*?)\.highq\.com\/");
+
+  String getUniqueName() {
+    return _uniqueNameExpression.firstMatch(domain)!.namedGroup("subdomain")!;
+  }
+}
 @riverpod
 class HighQDomainRegistry extends _$HighQDomainRegistry {
   @override
