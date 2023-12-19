@@ -23,8 +23,7 @@ mixin _$HighQDomain {
   String get name => throw _privateConstructorUsedError;
   String get domain => throw _privateConstructorUsedError;
   String get clientId => throw _privateConstructorUsedError;
-  String get redirectURI => throw _privateConstructorUsedError;
-  String get secret => throw _privateConstructorUsedError;
+  String get clientSecret => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +37,7 @@ abstract class $HighQDomainCopyWith<$Res> {
           HighQDomain value, $Res Function(HighQDomain) then) =
       _$HighQDomainCopyWithImpl<$Res, HighQDomain>;
   @useResult
-  $Res call(
-      {String name,
-      String domain,
-      String clientId,
-      String redirectURI,
-      String secret});
+  $Res call({String name, String domain, String clientId, String clientSecret});
 }
 
 /// @nodoc
@@ -62,8 +56,7 @@ class _$HighQDomainCopyWithImpl<$Res, $Val extends HighQDomain>
     Object? name = null,
     Object? domain = null,
     Object? clientId = null,
-    Object? redirectURI = null,
-    Object? secret = null,
+    Object? clientSecret = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -78,13 +71,9 @@ class _$HighQDomainCopyWithImpl<$Res, $Val extends HighQDomain>
           ? _value.clientId
           : clientId // ignore: cast_nullable_to_non_nullable
               as String,
-      redirectURI: null == redirectURI
-          ? _value.redirectURI
-          : redirectURI // ignore: cast_nullable_to_non_nullable
-              as String,
-      secret: null == secret
-          ? _value.secret
-          : secret // ignore: cast_nullable_to_non_nullable
+      clientSecret: null == clientSecret
+          ? _value.clientSecret
+          : clientSecret // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -98,12 +87,7 @@ abstract class _$$HighQDomainImplCopyWith<$Res>
       __$$HighQDomainImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String name,
-      String domain,
-      String clientId,
-      String redirectURI,
-      String secret});
+  $Res call({String name, String domain, String clientId, String clientSecret});
 }
 
 /// @nodoc
@@ -120,8 +104,7 @@ class __$$HighQDomainImplCopyWithImpl<$Res>
     Object? name = null,
     Object? domain = null,
     Object? clientId = null,
-    Object? redirectURI = null,
-    Object? secret = null,
+    Object? clientSecret = null,
   }) {
     return _then(_$HighQDomainImpl(
       null == name
@@ -136,13 +119,9 @@ class __$$HighQDomainImplCopyWithImpl<$Res>
           ? _value.clientId
           : clientId // ignore: cast_nullable_to_non_nullable
               as String,
-      null == redirectURI
-          ? _value.redirectURI
-          : redirectURI // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == secret
-          ? _value.secret
-          : secret // ignore: cast_nullable_to_non_nullable
+      null == clientSecret
+          ? _value.clientSecret
+          : clientSecret // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -152,7 +131,7 @@ class __$$HighQDomainImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HighQDomainImpl implements _HighQDomain {
   const _$HighQDomainImpl(
-      this.name, this.domain, this.clientId, this.redirectURI, this.secret);
+      this.name, this.domain, this.clientId, this.clientSecret);
 
   factory _$HighQDomainImpl.fromJson(Map<String, dynamic> json) =>
       _$$HighQDomainImplFromJson(json);
@@ -164,13 +143,11 @@ class _$HighQDomainImpl implements _HighQDomain {
   @override
   final String clientId;
   @override
-  final String redirectURI;
-  @override
-  final String secret;
+  final String clientSecret;
 
   @override
   String toString() {
-    return 'HighQDomain(name: $name, domain: $domain, clientId: $clientId, redirectURI: $redirectURI, secret: $secret)';
+    return 'HighQDomain(name: $name, domain: $domain, clientId: $clientId, clientSecret: $clientSecret)';
   }
 
   @override
@@ -182,15 +159,14 @@ class _$HighQDomainImpl implements _HighQDomain {
             (identical(other.domain, domain) || other.domain == domain) &&
             (identical(other.clientId, clientId) ||
                 other.clientId == clientId) &&
-            (identical(other.redirectURI, redirectURI) ||
-                other.redirectURI == redirectURI) &&
-            (identical(other.secret, secret) || other.secret == secret));
+            (identical(other.clientSecret, clientSecret) ||
+                other.clientSecret == clientSecret));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, domain, clientId, redirectURI, secret);
+      Object.hash(runtimeType, name, domain, clientId, clientSecret);
 
   @JsonKey(ignore: true)
   @override
@@ -207,12 +183,8 @@ class _$HighQDomainImpl implements _HighQDomain {
 }
 
 abstract class _HighQDomain implements HighQDomain {
-  const factory _HighQDomain(
-      final String name,
-      final String domain,
-      final String clientId,
-      final String redirectURI,
-      final String secret) = _$HighQDomainImpl;
+  const factory _HighQDomain(final String name, final String domain,
+      final String clientId, final String clientSecret) = _$HighQDomainImpl;
 
   factory _HighQDomain.fromJson(Map<String, dynamic> json) =
       _$HighQDomainImpl.fromJson;
@@ -224,9 +196,7 @@ abstract class _HighQDomain implements HighQDomain {
   @override
   String get clientId;
   @override
-  String get redirectURI;
-  @override
-  String get secret;
+  String get clientSecret;
   @override
   @JsonKey(ignore: true)
   _$$HighQDomainImplCopyWith<_$HighQDomainImpl> get copyWith =>

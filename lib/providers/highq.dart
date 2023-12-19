@@ -14,22 +14,22 @@ class HighQDomain with _$HighQDomain {
     String name,
     String domain,
     String clientId,
-    String redirectURI,
-    String secret,
+    String clientSecret,
   ) = _HighQDomain;
 
   factory HighQDomain.fromJson(Map<String, Object?> json) =>
       _$HighQDomainFromJson(json);
-
 }
-extension Utilities on HighQDomain {
 
-  static RegExp _uniqueNameExpression = RegExp("https:\/\/(?<subdomain>.*?)\.highq\.com\/");
+extension Utilities on HighQDomain {
+  static RegExp _uniqueNameExpression =
+      RegExp("https:\/\/(?<subdomain>.*?)\.highq\.com\/");
 
   String getUniqueName() {
     return _uniqueNameExpression.firstMatch(domain)!.namedGroup("subdomain")!;
   }
 }
+
 @riverpod
 class HighQDomainRegistry extends _$HighQDomainRegistry {
   @override
@@ -39,12 +39,27 @@ class HighQDomainRegistry extends _$HighQDomainRegistry {
     if (domains == null) {
       return [];
     }
-    return domains.map((e) => HighQDomain.fromJson(jsonDecode(e))).toList();
+    return domains
+        .map((e) {
+          try {
+            return HighQDomain.fromJson(jsonDecode(e));
+          } catch (e, s) {
+            return null;
+          }
+        })
+        .nonNulls
+        .toList();
   }
 
   Future addDomain(HighQDomain domain) async {
     var preferences = await SharedPreferences.getInstance();
-    var newDomains = [...state.requireValue, domain];
+    var newDomains = [
+      domain,
+    ];
+    var existing = state.value;
+    if (existing != null) {
+      newDomains.addAll(existing);
+    }
 
     await preferences.setStringList(
       "highq_domains",

@@ -11,8 +11,7 @@ _$HighQDomainImpl _$$HighQDomainImplFromJson(Map<String, dynamic> json) =>
       json['name'] as String,
       json['domain'] as String,
       json['clientId'] as String,
-      json['redirectURI'] as String,
-      json['secret'] as String,
+      json['clientSecret'] as String,
     );
 
 Map<String, dynamic> _$$HighQDomainImplToJson(_$HighQDomainImpl instance) =>
@@ -20,8 +19,7 @@ Map<String, dynamic> _$$HighQDomainImplToJson(_$HighQDomainImpl instance) =>
       'name': instance.name,
       'domain': instance.domain,
       'clientId': instance.clientId,
-      'redirectURI': instance.redirectURI,
-      'secret': instance.secret,
+      'clientSecret': instance.clientSecret,
     };
 
 // **************************************************************************
@@ -29,7 +27,7 @@ Map<String, dynamic> _$$HighQDomainImplToJson(_$HighQDomainImpl instance) =>
 // **************************************************************************
 
 String _$highQDomainRegistryHash() =>
-    r'719a57f6c63fe33f75ccea425f9e2638940b4ea2';
+    r'3f9c8d7f73ba750c864f9e9f4da2f44bb98a5b04';
 
 /// See also [HighQDomainRegistry].
 @ProviderFor(HighQDomainRegistry)

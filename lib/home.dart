@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:high_q_replication/domains_page.dart';
+import 'package:high_q_replication/providers/highq.dart';
 import 'package:high_q_replication/states_page.dart';
 
 typedef WidgetBuilder = HomePageView Function(BuildContext context);

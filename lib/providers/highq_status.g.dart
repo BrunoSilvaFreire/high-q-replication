@@ -7,7 +7,7 @@ part of 'highq_status.dart';
 // **************************************************************************
 
 String _$highQDomainStatusRegistryHash() =>
-    r'b828b2ec3a6e875d950bc0edb88225830b5a6728';
+    r'd11e94f0e1dc00dcce0e6931579943de5ebec2b1';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,11 +31,11 @@ class _SystemHash {
 }
 
 abstract class _$HighQDomainStatusRegistry
-    extends BuildlessAutoDisposeStreamNotifier<Map<String, HighQDomainMeta>> {
-  late final WidgetRef ref;
+    extends BuildlessAutoDisposeAsyncNotifier<HighQDomainMeta> {
+  late final HighQDomain domain;
 
-  Stream<Map<String, HighQDomainMeta>> build(
-    WidgetRef ref,
+  FutureOr<HighQDomainMeta> build(
+    HighQDomain domain,
   );
 }
 
@@ -45,16 +45,16 @@ const highQDomainStatusRegistryProvider = HighQDomainStatusRegistryFamily();
 
 /// See also [HighQDomainStatusRegistry].
 class HighQDomainStatusRegistryFamily
-    extends Family<AsyncValue<Map<String, HighQDomainMeta>>> {
+    extends Family<AsyncValue<HighQDomainMeta>> {
   /// See also [HighQDomainStatusRegistry].
   const HighQDomainStatusRegistryFamily();
 
   /// See also [HighQDomainStatusRegistry].
   HighQDomainStatusRegistryProvider call(
-    WidgetRef ref,
+    HighQDomain domain,
   ) {
     return HighQDomainStatusRegistryProvider(
-      ref,
+      domain,
     );
   }
 
@@ -63,7 +63,7 @@ class HighQDomainStatusRegistryFamily
     covariant HighQDomainStatusRegistryProvider provider,
   ) {
     return call(
-      provider.ref,
+      provider.domain,
     );
   }
 
@@ -84,13 +84,13 @@ class HighQDomainStatusRegistryFamily
 
 /// See also [HighQDomainStatusRegistry].
 class HighQDomainStatusRegistryProvider
-    extends AutoDisposeStreamNotifierProviderImpl<HighQDomainStatusRegistry,
-        Map<String, HighQDomainMeta>> {
+    extends AutoDisposeAsyncNotifierProviderImpl<HighQDomainStatusRegistry,
+        HighQDomainMeta> {
   /// See also [HighQDomainStatusRegistry].
   HighQDomainStatusRegistryProvider(
-    WidgetRef ref,
+    HighQDomain domain,
   ) : this._internal(
-          () => HighQDomainStatusRegistry()..ref = ref,
+          () => HighQDomainStatusRegistry()..domain = domain,
           from: highQDomainStatusRegistryProvider,
           name: r'highQDomainStatusRegistryProvider',
           debugGetCreateSourceHash:
@@ -100,7 +100,7 @@ class HighQDomainStatusRegistryProvider
           dependencies: HighQDomainStatusRegistryFamily._dependencies,
           allTransitiveDependencies:
               HighQDomainStatusRegistryFamily._allTransitiveDependencies,
-          ref: ref,
+          domain: domain,
         );
 
   HighQDomainStatusRegistryProvider._internal(
@@ -110,17 +110,17 @@ class HighQDomainStatusRegistryProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.ref,
+    required this.domain,
   }) : super.internal();
 
-  final WidgetRef ref;
+  final HighQDomain domain;
 
   @override
-  Stream<Map<String, HighQDomainMeta>> runNotifierBuild(
+  FutureOr<HighQDomainMeta> runNotifierBuild(
     covariant HighQDomainStatusRegistry notifier,
   ) {
     return notifier.build(
-      ref,
+      domain,
     );
   }
 
@@ -129,50 +129,51 @@ class HighQDomainStatusRegistryProvider
     return ProviderOverride(
       origin: this,
       override: HighQDomainStatusRegistryProvider._internal(
-        () => create()..ref = ref,
+        () => create()..domain = domain,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        ref: ref,
+        domain: domain,
       ),
     );
   }
 
   @override
-  AutoDisposeStreamNotifierProviderElement<HighQDomainStatusRegistry,
-      Map<String, HighQDomainMeta>> createElement() {
+  AutoDisposeAsyncNotifierProviderElement<HighQDomainStatusRegistry,
+      HighQDomainMeta> createElement() {
     return _HighQDomainStatusRegistryProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is HighQDomainStatusRegistryProvider && other.ref == ref;
+    return other is HighQDomainStatusRegistryProvider && other.domain == domain;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, ref.hashCode);
+    hash = _SystemHash.combine(hash, domain.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin HighQDomainStatusRegistryRef
-    on AutoDisposeStreamNotifierProviderRef<Map<String, HighQDomainMeta>> {
-  /// The parameter `ref` of this provider.
-  WidgetRef get ref;
+    on AutoDisposeAsyncNotifierProviderRef<HighQDomainMeta> {
+  /// The parameter `domain` of this provider.
+  HighQDomain get domain;
 }
 
 class _HighQDomainStatusRegistryProviderElement
-    extends AutoDisposeStreamNotifierProviderElement<HighQDomainStatusRegistry,
-        Map<String, HighQDomainMeta>> with HighQDomainStatusRegistryRef {
+    extends AutoDisposeAsyncNotifierProviderElement<HighQDomainStatusRegistry,
+        HighQDomainMeta> with HighQDomainStatusRegistryRef {
   _HighQDomainStatusRegistryProviderElement(super.provider);
 
   @override
-  WidgetRef get ref => (origin as HighQDomainStatusRegistryProvider).ref;
+  HighQDomain get domain =>
+      (origin as HighQDomainStatusRegistryProvider).domain;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
