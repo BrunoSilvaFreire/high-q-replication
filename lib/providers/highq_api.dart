@@ -4,12 +4,13 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:high_q_replication/highq.dart';
 import 'package:high_q_replication/providers/highq.dart';
+import 'package:http/src/response.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:oauth2/oauth2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-part 'highq_status.g.dart';
+part 'highq_api.g.dart';
 
 enum HighQDomainStatus {
   // We have no token
@@ -22,7 +23,7 @@ enum HighQDomainStatus {
   healthy,
 }
 
-class HighQDomainMeta {
+class HighQDomainAPI {
   HighQDomainStatus get status {
     if (_oauthClient != null) {
       if (_erroed) {
@@ -38,18 +39,22 @@ class HighQDomainMeta {
 
   bool _erroed = false;
   bool _healthy = false;
+  HighQDomain? _domain;
   Client? _oauthClient;
 
-  HighQDomainMeta();
+  HighQDomainAPI();
 
-  HighQDomainMeta.fromJson(HighQDomain domain, Map<String, dynamic> json) {
+  HighQDomainAPI.fromJson(HighQDomain domain, Map<String, dynamic> json) {
     var credentials = Credentials.fromJson(json['credentials']);
     _oauthClient = Client(
       credentials,
       identifier: domain.clientId,
       secret: domain.clientSecret,
     );
+    _domain = domain;
   }
+
+  Client? get client => _oauthClient;
 
   Map<String, dynamic> toJson() {
     return {
@@ -57,20 +62,28 @@ class HighQDomainMeta {
     };
   }
 
-  void useClient(Client client) {
+  void useClient(HighQDomain domain, Client client) {
+    _domain = domain;
     _oauthClient = client;
   }
 
-  void loadClient(Credentials credentials, HighQDomain domain) {}
+  Future<Response> get<T>(String path) async {
+    var d = _domain!;
+    var uri = Uri.parse("${d.domain}${d.getUniqueName()}/api/17$path");
+    var headers = {
+      HttpHeaders.acceptHeader: "application/json"
+    };
+    return await _oauthClient!.get(uri, headers: headers);
+  }
 }
 
 @riverpod
-class HighQDomainStatusRegistry extends _$HighQDomainStatusRegistry {
+class HighQDomainAPIRegistry extends _$HighQDomainAPIRegistry {
   String get _preferenceKey {
     return "highq_authorization_${domain.name}";
   }
 
-  Future<HighQDomainMeta?> loadFromDisk() async {
+  Future<HighQDomainAPI?> loadFromDisk() async {
     var preferences = await SharedPreferences.getInstance();
     var str = preferences.getString(_preferenceKey);
     if (str == null || str.isEmpty) {
@@ -78,7 +91,7 @@ class HighQDomainStatusRegistry extends _$HighQDomainStatusRegistry {
     }
 
     Map<String, dynamic> decoded = jsonDecode(str);
-    return HighQDomainMeta.fromJson(domain, decoded);
+    return HighQDomainAPI.fromJson(domain, decoded);
   }
 
   Future<bool> saveToDisk() async {
@@ -92,13 +105,13 @@ class HighQDomainStatusRegistry extends _$HighQDomainStatusRegistry {
   }
 
   @override
-  Future<HighQDomainMeta> build(HighQDomain domain) async {
-    HighQDomainMeta? fromDisk = await loadFromDisk();
+  Future<HighQDomainAPI> build(HighQDomain domain) async {
+    HighQDomainAPI? fromDisk = await loadFromDisk();
     if (fromDisk != null) {
       return fromDisk;
     }
 
-    return HighQDomainMeta();
+    return HighQDomainAPI();
   }
 
   Future<String?> authenticate() async {
@@ -132,7 +145,7 @@ class HighQDomainStatusRegistry extends _$HighQDomainStatusRegistry {
           var client = await grant.handleAuthorizationResponse(
             request.uri.queryParameters,
           );
-          known.useClient(client);
+          known.useClient(domain, client);
           await saveToDisk();
           request.response.statusCode = HttpStatus.ok;
           request.response

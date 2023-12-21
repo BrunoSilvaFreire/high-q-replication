@@ -1,0 +1,17 @@
+version: '3'
+
+vars:
+  WATCH_FILTER: "lib/providers/**"
+  BUILD_FILTER: "lib/generated/**"
+
+tasks:
+  watch:
+    cmds:
+      - flutter pub run build_runner watch --build-filter={{.WATCH_FILTER}}
+    desc: "Run build_runner in watch mode, building only files in lib/providers"
+
+  default:
+    desc: "Fully generate sources"
+    cmds:
+      - task: watch
+

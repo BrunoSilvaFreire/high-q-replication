@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'highq_status.dart';
+part of 'highq_api.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$highQDomainStatusRegistryHash() =>
-    r'd11e94f0e1dc00dcce0e6931579943de5ebec2b1';
+String _$highQDomainAPIRegistryHash() =>
+    r'8b7221cfe0be888566078935ee691e7db564e08d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,37 +30,36 @@ class _SystemHash {
   }
 }
 
-abstract class _$HighQDomainStatusRegistry
-    extends BuildlessAutoDisposeAsyncNotifier<HighQDomainMeta> {
+abstract class _$HighQDomainAPIRegistry
+    extends BuildlessAutoDisposeAsyncNotifier<HighQDomainAPI> {
   late final HighQDomain domain;
 
-  FutureOr<HighQDomainMeta> build(
+  FutureOr<HighQDomainAPI> build(
     HighQDomain domain,
   );
 }
 
-/// See also [HighQDomainStatusRegistry].
-@ProviderFor(HighQDomainStatusRegistry)
-const highQDomainStatusRegistryProvider = HighQDomainStatusRegistryFamily();
+/// See also [HighQDomainAPIRegistry].
+@ProviderFor(HighQDomainAPIRegistry)
+const highQDomainAPIRegistryProvider = HighQDomainAPIRegistryFamily();
 
-/// See also [HighQDomainStatusRegistry].
-class HighQDomainStatusRegistryFamily
-    extends Family<AsyncValue<HighQDomainMeta>> {
-  /// See also [HighQDomainStatusRegistry].
-  const HighQDomainStatusRegistryFamily();
+/// See also [HighQDomainAPIRegistry].
+class HighQDomainAPIRegistryFamily extends Family<AsyncValue<HighQDomainAPI>> {
+  /// See also [HighQDomainAPIRegistry].
+  const HighQDomainAPIRegistryFamily();
 
-  /// See also [HighQDomainStatusRegistry].
-  HighQDomainStatusRegistryProvider call(
+  /// See also [HighQDomainAPIRegistry].
+  HighQDomainAPIRegistryProvider call(
     HighQDomain domain,
   ) {
-    return HighQDomainStatusRegistryProvider(
+    return HighQDomainAPIRegistryProvider(
       domain,
     );
   }
 
   @override
-  HighQDomainStatusRegistryProvider getProviderOverride(
-    covariant HighQDomainStatusRegistryProvider provider,
+  HighQDomainAPIRegistryProvider getProviderOverride(
+    covariant HighQDomainAPIRegistryProvider provider,
   ) {
     return call(
       provider.domain,
@@ -79,31 +78,31 @@ class HighQDomainStatusRegistryFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'highQDomainStatusRegistryProvider';
+  String? get name => r'highQDomainAPIRegistryProvider';
 }
 
-/// See also [HighQDomainStatusRegistry].
-class HighQDomainStatusRegistryProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<HighQDomainStatusRegistry,
-        HighQDomainMeta> {
-  /// See also [HighQDomainStatusRegistry].
-  HighQDomainStatusRegistryProvider(
+/// See also [HighQDomainAPIRegistry].
+class HighQDomainAPIRegistryProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<HighQDomainAPIRegistry,
+        HighQDomainAPI> {
+  /// See also [HighQDomainAPIRegistry].
+  HighQDomainAPIRegistryProvider(
     HighQDomain domain,
   ) : this._internal(
-          () => HighQDomainStatusRegistry()..domain = domain,
-          from: highQDomainStatusRegistryProvider,
-          name: r'highQDomainStatusRegistryProvider',
+          () => HighQDomainAPIRegistry()..domain = domain,
+          from: highQDomainAPIRegistryProvider,
+          name: r'highQDomainAPIRegistryProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$highQDomainStatusRegistryHash,
-          dependencies: HighQDomainStatusRegistryFamily._dependencies,
+                  : _$highQDomainAPIRegistryHash,
+          dependencies: HighQDomainAPIRegistryFamily._dependencies,
           allTransitiveDependencies:
-              HighQDomainStatusRegistryFamily._allTransitiveDependencies,
+              HighQDomainAPIRegistryFamily._allTransitiveDependencies,
           domain: domain,
         );
 
-  HighQDomainStatusRegistryProvider._internal(
+  HighQDomainAPIRegistryProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -116,8 +115,8 @@ class HighQDomainStatusRegistryProvider
   final HighQDomain domain;
 
   @override
-  FutureOr<HighQDomainMeta> runNotifierBuild(
-    covariant HighQDomainStatusRegistry notifier,
+  FutureOr<HighQDomainAPI> runNotifierBuild(
+    covariant HighQDomainAPIRegistry notifier,
   ) {
     return notifier.build(
       domain,
@@ -125,10 +124,10 @@ class HighQDomainStatusRegistryProvider
   }
 
   @override
-  Override overrideWith(HighQDomainStatusRegistry Function() create) {
+  Override overrideWith(HighQDomainAPIRegistry Function() create) {
     return ProviderOverride(
       origin: this,
-      override: HighQDomainStatusRegistryProvider._internal(
+      override: HighQDomainAPIRegistryProvider._internal(
         () => create()..domain = domain,
         from: from,
         name: null,
@@ -141,14 +140,14 @@ class HighQDomainStatusRegistryProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<HighQDomainStatusRegistry,
-      HighQDomainMeta> createElement() {
-    return _HighQDomainStatusRegistryProviderElement(this);
+  AutoDisposeAsyncNotifierProviderElement<HighQDomainAPIRegistry,
+      HighQDomainAPI> createElement() {
+    return _HighQDomainAPIRegistryProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is HighQDomainStatusRegistryProvider && other.domain == domain;
+    return other is HighQDomainAPIRegistryProvider && other.domain == domain;
   }
 
   @override
@@ -160,20 +159,19 @@ class HighQDomainStatusRegistryProvider
   }
 }
 
-mixin HighQDomainStatusRegistryRef
-    on AutoDisposeAsyncNotifierProviderRef<HighQDomainMeta> {
+mixin HighQDomainAPIRegistryRef
+    on AutoDisposeAsyncNotifierProviderRef<HighQDomainAPI> {
   /// The parameter `domain` of this provider.
   HighQDomain get domain;
 }
 
-class _HighQDomainStatusRegistryProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<HighQDomainStatusRegistry,
-        HighQDomainMeta> with HighQDomainStatusRegistryRef {
-  _HighQDomainStatusRegistryProviderElement(super.provider);
+class _HighQDomainAPIRegistryProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<HighQDomainAPIRegistry,
+        HighQDomainAPI> with HighQDomainAPIRegistryRef {
+  _HighQDomainAPIRegistryProviderElement(super.provider);
 
   @override
-  HighQDomain get domain =>
-      (origin as HighQDomainStatusRegistryProvider).domain;
+  HighQDomain get domain => (origin as HighQDomainAPIRegistryProvider).domain;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

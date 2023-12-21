@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:high_q_replication/home.dart';
+import 'package:high_q_replication/pages/domain/domain_page.dart';
 import 'package:high_q_replication/providers/highq.dart';
-import 'package:high_q_replication/providers/highq_status.dart';
+import 'package:high_q_replication/providers/highq_api.dart';
+import 'package:high_q_replication/shimmers.dart';
 import 'package:shimmer/shimmer.dart';
 
 EdgeInsets _domainMargin() => const EdgeInsets.symmetric(
@@ -55,10 +57,9 @@ class DomainsPage extends HomePageView {
           loading: () {
             return List.generate(
               4,
-              (index) => Shimmer.fromColors(
-                baseColor: theme.colorScheme.surfaceVariant,
-                highlightColor: theme.colorScheme.surfaceTint,
-                child: Card(
+              (index) => createShimmerFrom(
+                context,
+                Card(
                   margin: _domainMargin(),
                   child: SizedBox(
                     height: 64,
@@ -214,7 +215,7 @@ class _AddDomainDialogState extends ConsumerState<_AddDomainDialog> {
                         var registry =
                             ref.read(highQDomainRegistryProvider.notifier);
                         await registry.addDomain(domain);
-                        var read = ref.read(highQDomainStatusRegistryProvider
+                        var read = ref.read(highQDomainAPIRegistryProvider
                             .call(domain)
                             .notifier);
                         _authenticationFuture = read.authenticate();
@@ -249,7 +250,7 @@ class _DomainIndicatorState extends ConsumerState<_DomainIndicator> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var family = highQDomainStatusRegistryProvider.call(widget.domain);
+    var family = highQDomainAPIRegistryProvider.call(widget.domain);
     var status = ref.watch(family);
     return Card(
       margin: _domainMargin(),
@@ -257,71 +258,98 @@ class _DomainIndicatorState extends ConsumerState<_DomainIndicator> {
         error: (error, stackTrace) => theme.colorScheme.errorContainer,
       ),
       child: FutureBuilder(
-        builder: (context, snapshot) => Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListTileTheme(
-            data: _getTheme(status, theme),
-            child: ListTile(
-              title: Text(widget.domain.name),
-              subtitle: Text(
-                _getSubtitle(status),
-                style: theme.textTheme.labelSmall,
-              ),
-              leading: status.whenOrNull(
-                loading: () {
-                  return const CircularProgressIndicator();
-                },
-                data: (data) {
-                  switch (data.status) {
-                    case HighQDomainStatus.unauthenticated:
-                    case HighQDomainStatus.unauthorized:
-                      return IconButton.filledTonal(
-                        onPressed: () async {
-                          setState(() {
-                            _authFuture =
-                                ref.read(family.notifier).authenticate();
-                          });
-                        },
-                        icon: const Icon(Icons.refresh),
-                      );
-                    case HighQDomainStatus.authenticated:
-                    case HighQDomainStatus.healthy:
-                      return const Icon(
-                        Icons.verified,
-                      );
-                  }
-                },
-              ),
-              trailing: IconButton(
-                onPressed: () async {
-                  var delete = await Navigator.push(
-                    context,
-                    DialogRoute(
-                      context: context,
-                      builder: (context) => _RemoveDomainDialog(
-                        domain: widget.domain,
-                      ),
-                    ),
-                  );
-
-                  if (delete) {
-                    await ref
-                        .read(highQDomainRegistryProvider.notifier)
-                        .removeDomain(widget.domain);
-                  }
-                },
-                icon: const Icon(Icons.delete_forever),
+        future: _authFuture,
+        builder: (context, snapshot) {
+          bool allowClick = !snapshot.hasData;
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTileTheme(
+              data: _getTheme(status, theme),
+              child: ListTile(
+                title: Text(widget.domain.name),
+                subtitle: Text(
+                  _getSubtitle(status),
+                  style: theme.textTheme.labelSmall,
+                ),
+                leading: _getLeading(status, family),
+                trailing: _getTrailing(context),
+                onTap: !allowClick
+                    ? null
+                    : () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return DomainPage(
+                                domain: widget.domain,
+                              );
+                            },
+                          ),
+                        );
+                      },
               ),
             ),
-          ),
-        ),
-        future: _authFuture,
+          );
+        },
       ),
     );
   }
 
+  IconButton _getTrailing(BuildContext context) {
+    return IconButton(
+      onPressed: () async {
+        var delete = await Navigator.push(
+          context,
+          DialogRoute(
+            context: context,
+            builder: (context) => _RemoveDomainDialog(
+              domain: widget.domain,
+            ),
+          ),
+        );
+
+        if (delete) {
+          await ref
+              .read(highQDomainRegistryProvider.notifier)
+              .removeDomain(widget.domain);
+        }
+      },
+      icon: const Icon(Icons.delete_forever),
+    );
+  }
+
+  Widget? _getLeading(
+    AsyncValue<HighQDomainAPI> status,
+    HighQDomainAPIRegistryProvider family,
+  ) {
+    return status.whenOrNull(
+      loading: () {
+        return const CircularProgressIndicator();
+      },
+      data: (data) {
+        switch (data.status) {
+          case HighQDomainStatus.unauthenticated:
+          case HighQDomainStatus.unauthorized:
+            return IconButton.filledTonal(
+              onPressed: () async {
+                setState(() {
+                  _authFuture = ref.read(family.notifier).authenticate();
+                });
+              },
+              icon: const Icon(Icons.refresh),
+            );
+          case HighQDomainStatus.authenticated:
+          case HighQDomainStatus.healthy:
+            return const Icon(
+              Icons.verified,
+            );
+        }
+      },
+    );
+  }
+
   ListTileThemeData? _getTheme(
-      AsyncValue<HighQDomainMeta> status, ThemeData theme) {
+      AsyncValue<HighQDomainAPI> status, ThemeData theme) {
     return status.whenOrNull(
       error: (error, stackTrace) {
         return theme.listTileTheme.copyWith(
@@ -332,7 +360,7 @@ class _DomainIndicatorState extends ConsumerState<_DomainIndicator> {
     );
   }
 
-  String _getSubtitle(AsyncValue<HighQDomainMeta> status) {
+  String _getSubtitle(AsyncValue<HighQDomainAPI> status) {
     return status.when(
       data: (data) {
         return "${widget.domain.domain}: ${data.status}";

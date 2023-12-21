@@ -11,4 +11,9 @@ class HighQ {
     return Uri.parse("https://$domainName.highq.com/$domainName/api/oauth2/token");
   }
 
+  static Uri getUri(HighQDomain domain) {
+    var domainName = domain.getUniqueName();
+    return Uri.parse("https://$domainName.highq.com/v1/$domainName/api/oauth2/token");
+  }
+
 }

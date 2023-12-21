@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:high_q_replication/domains_page.dart';
+import 'package:high_q_replication/pages/domains/domains_page.dart';
 import 'package:high_q_replication/providers/highq.dart';
 import 'package:high_q_replication/states_page.dart';
 
@@ -52,21 +52,23 @@ class HomePageState extends ConsumerState<HomePage>
     vsync: this,
   );
   late var provider = ChangeNotifierProvider(
-        (ref) => _tabController,
+    (ref) => _tabController,
   );
+
   @override
   Widget build(BuildContext context) {
     ref.watch(provider);
     var views = _views.map((e) => e.builder(context)).toList();
     return Scaffold(
-      appBar: AppBar(
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: _views.map((e) => e.tab(context)).toList(),
-        ),
+      appBar: TabBar(
+        controller: _tabController,
+        tabs: _views.map((e) => e.tab(context)).toList(),
       ),
       floatingActionButton: views[_tabController.index].fab(context),
-      body: TabBarView(controller: _tabController, children: views),
+      body: TabBarView(
+        controller: _tabController,
+        children: views,
+      ),
     );
   }
 
