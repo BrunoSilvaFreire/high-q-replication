@@ -67,13 +67,32 @@ class HighQDomainAPI {
     _oauthClient = client;
   }
 
-  Future<Response> get<T>(String path) async {
-    var d = _domain!;
-    var uri = Uri.parse("${d.domain}${d.getUniqueName()}/api/17$path");
-    var headers = {
-      HttpHeaders.acceptHeader: "application/json"
-    };
+  Future<Response> get<T>(
+    String path, {
+    Map<String, String>? queryParameters,
+  }) async {
+    Uri uri = _buildUri(path, queryParameters);
+    var headers = {HttpHeaders.acceptHeader: "application/json"};
     return await _oauthClient!.get(uri, headers: headers);
+  }
+
+  Uri _buildUri(String path, Map<String, String>? queryParameters) {
+    var d = _domain!;
+    StringBuffer buffer =
+        StringBuffer("${d.domain}${d.getUniqueName()}/api/17$path");
+    if (queryParameters != null) {
+      buffer.write("?");
+      var entries = queryParameters.entries.toList();
+      var lastIndex = entries.length - 1;
+      for (var (index, pair) in entries.indexed) {
+        buffer.write("${pair.key}=${pair.value}");
+        if (index != lastIndex) {
+          buffer.write("&");
+        }
+      }
+    }
+    var uri = Uri.parse(buffer.toString());
+    return uri;
   }
 }
 

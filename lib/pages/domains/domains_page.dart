@@ -9,7 +9,8 @@ import 'package:high_q_replication/providers/highq_api.dart';
 import 'package:high_q_replication/shimmers.dart';
 import 'package:shimmer/shimmer.dart';
 
-EdgeInsets _domainMargin() => const EdgeInsets.symmetric(
+EdgeInsets _domainMargin() =>
+    const EdgeInsets.symmetric(
       horizontal: 32,
       vertical: 8,
     );
@@ -57,15 +58,16 @@ class DomainsPage extends HomePageView {
           loading: () {
             return List.generate(
               4,
-              (index) => createShimmerFrom(
-                context,
-                Card(
-                  margin: _domainMargin(),
-                  child: SizedBox(
-                    height: 64,
+                  (index) =>
+                  createShimmerFrom(
+                    context,
+                    Card(
+                      margin: _domainMargin(),
+                      child: SizedBox(
+                        height: 64,
+                      ),
+                    ),
                   ),
-                ),
-              ),
             );
           },
         )
@@ -180,7 +182,7 @@ class _AddDomainDialogState extends ConsumerState<_AddDomainDialog> {
                               label: Text("Client ID"),
                               icon: Icon(Icons.perm_identity),
                               hintText:
-                                  "Probably a triple digit number (e.g. 108)",
+                              "Probably a triple digit number (e.g. 108)",
                             ),
                             controller: _clientId,
                           ),
@@ -189,7 +191,7 @@ class _AddDomainDialogState extends ConsumerState<_AddDomainDialog> {
                               label: Text("Client Secret"),
                               icon: Icon(Icons.generating_tokens),
                               hintText:
-                                  "Your secret will be stored locally on your device.",
+                              "Your secret will be stored locally on your device.",
                             ),
                             obscureText: true,
                             controller: _clientSecret,
@@ -213,7 +215,7 @@ class _AddDomainDialogState extends ConsumerState<_AddDomainDialog> {
                           _clientSecret.text,
                         );
                         var registry =
-                            ref.read(highQDomainRegistryProvider.notifier);
+                        ref.read(highQDomainRegistryProvider.notifier);
                         await registry.addDomain(domain);
                         var read = ref.read(highQDomainAPIRegistryProvider
                             .call(domain)
@@ -254,6 +256,7 @@ class _DomainIndicatorState extends ConsumerState<_DomainIndicator> {
     var status = ref.watch(family);
     return Card(
       margin: _domainMargin(),
+      clipBehavior: Clip.antiAlias,
       color: status.whenOrNull(
         error: (error, stackTrace) => theme.colorScheme.errorContainer,
       ),
@@ -261,32 +264,34 @@ class _DomainIndicatorState extends ConsumerState<_DomainIndicator> {
         future: _authFuture,
         builder: (context, snapshot) {
           bool allowClick = !snapshot.hasData;
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTileTheme(
-              data: _getTheme(status, theme),
-              child: ListTile(
-                title: Text(widget.domain.name),
-                subtitle: Text(
-                  _getSubtitle(status),
-                  style: theme.textTheme.labelSmall,
+          return InkWell(
+            onTap: !allowClick
+                ? null
+                : () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return DomainPage(
+                      domain: widget.domain,
+                    );
+                  },
                 ),
-                leading: _getLeading(status, family),
-                trailing: _getTrailing(context),
-                onTap: !allowClick
-                    ? null
-                    : () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return DomainPage(
-                                domain: widget.domain,
-                              );
-                            },
-                          ),
-                        );
-                      },
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTileTheme(
+                data: _getTheme(status, theme),
+                child: ListTile(
+                    title: Text(widget.domain.name),
+                    subtitle: Text(
+                      _getSubtitle(status),
+                      style: theme.textTheme.labelSmall,
+                    ),
+                    leading: _getLeading(status, family),
+                    trailing: _getTrailing(context),
+                ),
               ),
             ),
           );
@@ -302,9 +307,10 @@ class _DomainIndicatorState extends ConsumerState<_DomainIndicator> {
           context,
           DialogRoute(
             context: context,
-            builder: (context) => _RemoveDomainDialog(
-              domain: widget.domain,
-            ),
+            builder: (context) =>
+                _RemoveDomainDialog(
+                  domain: widget.domain,
+                ),
           ),
         );
 
@@ -318,10 +324,8 @@ class _DomainIndicatorState extends ConsumerState<_DomainIndicator> {
     );
   }
 
-  Widget? _getLeading(
-    AsyncValue<HighQDomainAPI> status,
-    HighQDomainAPIRegistryProvider family,
-  ) {
+  Widget? _getLeading(AsyncValue<HighQDomainAPI> status,
+      HighQDomainAPIRegistryProvider family,) {
     return status.whenOrNull(
       loading: () {
         return const CircularProgressIndicator();
@@ -348,8 +352,8 @@ class _DomainIndicatorState extends ConsumerState<_DomainIndicator> {
     );
   }
 
-  ListTileThemeData? _getTheme(
-      AsyncValue<HighQDomainAPI> status, ThemeData theme) {
+  ListTileThemeData? _getTheme(AsyncValue<HighQDomainAPI> status,
+      ThemeData theme) {
     return status.whenOrNull(
       error: (error, stackTrace) {
         return theme.listTileTheme.copyWith(

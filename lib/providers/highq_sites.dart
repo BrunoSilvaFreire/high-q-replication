@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:high_q_replication/collections.dart';
 import 'package:high_q_replication/providers/highq.dart';
 import 'package:high_q_replication/providers/highq_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -16,7 +17,6 @@ class HighQSite with _$HighQSite {
     String? sitename,
     String? createddate,
     String? status,
-
   ) = _HighQSite;
 
   factory HighQSite.fromJson(Map<String, Object?> json) =>
@@ -43,5 +43,17 @@ class HighQSites extends _$HighQSites {
     }
 
     return null;
+  }
+}
+
+@riverpod
+class HighQSiteQuery extends _$HighQSiteQuery {
+  Future<HighQSite?> build(int index, HighQDomain domain) async {
+    var api = ref.watch(highQSitesProvider.call(domain));
+    return api.whenOrNull(
+      data: (data) {
+        return data?.site.firstOrNullWhere((element) => element.id == index);
+      },
+    );
   }
 }

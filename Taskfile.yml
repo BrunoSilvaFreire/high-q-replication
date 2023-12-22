@@ -7,7 +7,7 @@ vars:
 tasks:
   watch:
     cmds:
-      - flutter pub run build_runner watch --build-filter={{.WATCH_FILTER}}
+      - flutter pub run build_runner watch
     desc: "Run build_runner in watch mode, building only files in lib/providers"
 
   default:

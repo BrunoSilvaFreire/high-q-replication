@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:high_q_replication/pages/site/site_page.dart';
 import 'package:high_q_replication/providers/highq.dart';
 import 'package:high_q_replication/providers/highq_sites.dart';
 import 'package:high_q_replication/shimmers.dart';
@@ -37,7 +38,9 @@ class DomainPage extends ConsumerWidget {
         return GridView.extent(
           maxCrossAxisExtent: 300,
           shrinkWrap: true,
-          children: [for (var site in sites) _HighQSiteCard(site)],
+          children: [
+            for (var site in sites) _HighQSiteCard(domain, site),
+          ],
         );
       },
       error: (Object error, StackTrace stackTrace) {
@@ -47,8 +50,8 @@ class DomainPage extends ConsumerWidget {
         return GridView.extent(
           maxCrossAxisExtent: 300,
           shrinkWrap: true,
-          children:
-              List.generate(6, (index) => createShimmerFrom(context, const Card())),
+          children: List.generate(
+              6, (index) => createShimmerFrom(context, const Card())),
         );
       },
     );
@@ -57,8 +60,9 @@ class DomainPage extends ConsumerWidget {
 
 class _HighQSiteCard extends StatelessWidget {
   final HighQSite site;
+  final HighQDomain domain;
 
-  const _HighQSiteCard(this.site);
+  const _HighQSiteCard(this.domain, this.site);
 
   @override
   Widget build(BuildContext context) {
@@ -66,14 +70,22 @@ class _HighQSiteCard extends StatelessWidget {
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) {
+              return SitePage(
+                site: site,
+                domain: domain,
+              );
+            },
+          ));
+        },
         child: Column(
           children: [
             ListTile(
               title: Text(site.sitename ?? "Unnamed"),
               leading: _getLeading(),
-              subtitle:
-                  createddate == null ? null : Text("Created $createddate"),
+              subtitle: Text("Id: ${site.id}"),
             ),
           ],
         ),

@@ -45,3 +45,7 @@ app.*.map.json
 highq_api
 openapitools.json
 highq.swagger
+
+# "JSON to Dart Model" generator tracker files locations.
+/.json_models/
+models.jsonc
