@@ -11,7 +11,7 @@ part 'highq_isheets.g.dart';
 @riverpod
 class HighQISheets extends _$HighQISheets {
   @override
-  Future<HighQiSheet?> build(HighQSite site, HighQDomain domain) async {
+  Future<HighQiSheetList?> build(HighQSite site, HighQDomain domain) async {
     var api = ref.watch(highQDomainAPIRegistryProvider.call(domain));
 
     var future = api.whenOrNull(
@@ -21,7 +21,7 @@ class HighQISheets extends _$HighQISheets {
           queryParameters: {"siteid": site.id.toString()},
         );
         var json = jsonDecode(response.body);
-        return HighQiSheet.fromJson(json);
+        return HighQiSheetList.fromJson(json);
       },
     );
     if (future != null) {

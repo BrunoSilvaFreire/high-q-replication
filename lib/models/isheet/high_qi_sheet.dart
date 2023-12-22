@@ -6,11 +6,11 @@ part 'high_qi_sheet.freezed.dart';
 part 'high_qi_sheet.g.dart';
 
 @freezed
-class HighQiSheet with _$HighQiSheet {
-  factory HighQiSheet({
+class HighQiSheetList with _$HighQiSheetList {
+  factory HighQiSheetList({
     List<Isheet>? isheet,
   }) = _HighQiSheet;
 
-  factory HighQiSheet.fromJson(Map<String, dynamic> json) =>
-      _$HighQiSheetFromJson(json);
+  factory HighQiSheetList.fromJson(Map<String, dynamic> json) =>
+      _$HighQiSheetListFromJson(json);
 }

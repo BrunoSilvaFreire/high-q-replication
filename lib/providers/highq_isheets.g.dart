@@ -6,7 +6,7 @@ part of 'highq_isheets.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$highQISheetsHash() => r'915caaa308258fc031a6a93caa19ca9ae777b63e';
+String _$highQISheetsHash() => r'e83873944fd1a40edbeaa51db9ac5001fe6a1c9e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,11 +30,11 @@ class _SystemHash {
 }
 
 abstract class _$HighQISheets
-    extends BuildlessAutoDisposeAsyncNotifier<HighQiSheet?> {
+    extends BuildlessAutoDisposeAsyncNotifier<HighQiSheetList?> {
   late final HighQSite site;
   late final HighQDomain domain;
 
-  FutureOr<HighQiSheet?> build(
+  FutureOr<HighQiSheetList?> build(
     HighQSite site,
     HighQDomain domain,
   );
@@ -45,7 +45,7 @@ abstract class _$HighQISheets
 const highQISheetsProvider = HighQISheetsFamily();
 
 /// See also [HighQISheets].
-class HighQISheetsFamily extends Family<AsyncValue<HighQiSheet?>> {
+class HighQISheetsFamily extends Family<AsyncValue<HighQiSheetList?>> {
   /// See also [HighQISheets].
   const HighQISheetsFamily();
 
@@ -86,8 +86,8 @@ class HighQISheetsFamily extends Family<AsyncValue<HighQiSheet?>> {
 }
 
 /// See also [HighQISheets].
-class HighQISheetsProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<HighQISheets, HighQiSheet?> {
+class HighQISheetsProvider extends AutoDisposeAsyncNotifierProviderImpl<
+    HighQISheets, HighQiSheetList?> {
   /// See also [HighQISheets].
   HighQISheetsProvider(
     HighQSite site,
@@ -124,7 +124,7 @@ class HighQISheetsProvider
   final HighQDomain domain;
 
   @override
-  FutureOr<HighQiSheet?> runNotifierBuild(
+  FutureOr<HighQiSheetList?> runNotifierBuild(
     covariant HighQISheets notifier,
   ) {
     return notifier.build(
@@ -153,7 +153,7 @@ class HighQISheetsProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<HighQISheets, HighQiSheet?>
+  AutoDisposeAsyncNotifierProviderElement<HighQISheets, HighQiSheetList?>
       createElement() {
     return _HighQISheetsProviderElement(this);
   }
@@ -175,7 +175,7 @@ class HighQISheetsProvider
   }
 }
 
-mixin HighQISheetsRef on AutoDisposeAsyncNotifierProviderRef<HighQiSheet?> {
+mixin HighQISheetsRef on AutoDisposeAsyncNotifierProviderRef<HighQiSheetList?> {
   /// The parameter `site` of this provider.
   HighQSite get site;
 
@@ -184,8 +184,8 @@ mixin HighQISheetsRef on AutoDisposeAsyncNotifierProviderRef<HighQiSheet?> {
 }
 
 class _HighQISheetsProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<HighQISheets, HighQiSheet?>
-    with HighQISheetsRef {
+    extends AutoDisposeAsyncNotifierProviderElement<HighQISheets,
+        HighQiSheetList?> with HighQISheetsRef {
   _HighQISheetsProviderElement(super.provider);
 
   @override

@@ -20,8 +20,8 @@ class DomainPage extends ConsumerWidget {
           domain.name,
         ),
       ),
-      body: Column(
-        children: [
+      body: CustomScrollView(
+        slivers: [
           _buildSites(context, sites),
         ],
       ),
@@ -33,11 +33,12 @@ class DomainPage extends ConsumerWidget {
       data: (data) {
         var sites = data?.site;
         if (sites == null || sites.isEmpty) {
-          return const Text("No sites");
+          return const SliverToBoxAdapter(
+            child: Text("No sites"),
+          );
         }
-        return GridView.extent(
+        return SliverGrid.extent(
           maxCrossAxisExtent: 300,
-          shrinkWrap: true,
           children: [
             for (var site in sites) _HighQSiteCard(domain, site),
           ],
@@ -47,11 +48,12 @@ class DomainPage extends ConsumerWidget {
         return Text(error.toString());
       },
       loading: () {
-        return GridView.extent(
+        return SliverGrid.extent(
           maxCrossAxisExtent: 300,
-          shrinkWrap: true,
           children: List.generate(
-              6, (index) => createShimmerFrom(context, const Card())),
+            6,
+            (index) => createShimmerFrom(context, const Card()),
+          ),
         );
       },
     );
@@ -66,7 +68,6 @@ class _HighQSiteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var createddate = site.createddate;
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(

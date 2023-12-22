@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Column _$ColumnFromJson(Map<String, dynamic> json) {
-  return _Column.fromJson(json);
+HighQColumn _$HighQColumnFromJson(Map<String, dynamic> json) {
+  return _HighQColumn.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Column {
+mixin _$HighQColumn {
   String? get title => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   bool? get mendatory => throw _privateConstructorUsedError;
@@ -28,13 +28,15 @@ mixin _$Column {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ColumnCopyWith<Column> get copyWith => throw _privateConstructorUsedError;
+  $HighQColumnCopyWith<HighQColumn> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ColumnCopyWith<$Res> {
-  factory $ColumnCopyWith(Column value, $Res Function(Column) then) =
-      _$ColumnCopyWithImpl<$Res, Column>;
+abstract class $HighQColumnCopyWith<$Res> {
+  factory $HighQColumnCopyWith(
+          HighQColumn value, $Res Function(HighQColumn) then) =
+      _$HighQColumnCopyWithImpl<$Res, HighQColumn>;
   @useResult
   $Res call(
       {String? title,
@@ -44,9 +46,9 @@ abstract class $ColumnCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ColumnCopyWithImpl<$Res, $Val extends Column>
-    implements $ColumnCopyWith<$Res> {
-  _$ColumnCopyWithImpl(this._value, this._then);
+class _$HighQColumnCopyWithImpl<$Res, $Val extends HighQColumn>
+    implements $HighQColumnCopyWith<$Res> {
+  _$HighQColumnCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,10 +85,11 @@ class _$ColumnCopyWithImpl<$Res, $Val extends Column>
 }
 
 /// @nodoc
-abstract class _$$ColumnImplCopyWith<$Res> implements $ColumnCopyWith<$Res> {
-  factory _$$ColumnImplCopyWith(
-          _$ColumnImpl value, $Res Function(_$ColumnImpl) then) =
-      __$$ColumnImplCopyWithImpl<$Res>;
+abstract class _$$HighQColumnImplCopyWith<$Res>
+    implements $HighQColumnCopyWith<$Res> {
+  factory _$$HighQColumnImplCopyWith(
+          _$HighQColumnImpl value, $Res Function(_$HighQColumnImpl) then) =
+      __$$HighQColumnImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -97,11 +100,11 @@ abstract class _$$ColumnImplCopyWith<$Res> implements $ColumnCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ColumnImplCopyWithImpl<$Res>
-    extends _$ColumnCopyWithImpl<$Res, _$ColumnImpl>
-    implements _$$ColumnImplCopyWith<$Res> {
-  __$$ColumnImplCopyWithImpl(
-      _$ColumnImpl _value, $Res Function(_$ColumnImpl) _then)
+class __$$HighQColumnImplCopyWithImpl<$Res>
+    extends _$HighQColumnCopyWithImpl<$Res, _$HighQColumnImpl>
+    implements _$$HighQColumnImplCopyWith<$Res> {
+  __$$HighQColumnImplCopyWithImpl(
+      _$HighQColumnImpl _value, $Res Function(_$HighQColumnImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +115,7 @@ class __$$ColumnImplCopyWithImpl<$Res>
     Object? mendatory = freezed,
     Object? columnId = freezed,
   }) {
-    return _then(_$ColumnImpl(
+    return _then(_$HighQColumnImpl(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -135,15 +138,15 @@ class __$$ColumnImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ColumnImpl implements _Column {
-  _$ColumnImpl(
+class _$HighQColumnImpl implements _HighQColumn {
+  _$HighQColumnImpl(
       {this.title,
       this.type,
       this.mendatory,
       @JsonKey(name: 'columnID') this.columnId});
 
-  factory _$ColumnImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ColumnImplFromJson(json);
+  factory _$HighQColumnImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HighQColumnImplFromJson(json);
 
   @override
   final String? title;
@@ -157,14 +160,14 @@ class _$ColumnImpl implements _Column {
 
   @override
   String toString() {
-    return 'Column(title: $title, type: $type, mendatory: $mendatory, columnId: $columnId)';
+    return 'HighQColumn(title: $title, type: $type, mendatory: $mendatory, columnId: $columnId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ColumnImpl &&
+            other is _$HighQColumnImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.mendatory, mendatory) ||
@@ -181,25 +184,26 @@ class _$ColumnImpl implements _Column {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ColumnImplCopyWith<_$ColumnImpl> get copyWith =>
-      __$$ColumnImplCopyWithImpl<_$ColumnImpl>(this, _$identity);
+  _$$HighQColumnImplCopyWith<_$HighQColumnImpl> get copyWith =>
+      __$$HighQColumnImplCopyWithImpl<_$HighQColumnImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ColumnImplToJson(
+    return _$$HighQColumnImplToJson(
       this,
     );
   }
 }
 
-abstract class _Column implements Column {
-  factory _Column(
+abstract class _HighQColumn implements HighQColumn {
+  factory _HighQColumn(
       {final String? title,
       final String? type,
       final bool? mendatory,
-      @JsonKey(name: 'columnID') final int? columnId}) = _$ColumnImpl;
+      @JsonKey(name: 'columnID') final int? columnId}) = _$HighQColumnImpl;
 
-  factory _Column.fromJson(Map<String, dynamic> json) = _$ColumnImpl.fromJson;
+  factory _HighQColumn.fromJson(Map<String, dynamic> json) =
+      _$HighQColumnImpl.fromJson;
 
   @override
   String? get title;
@@ -212,6 +216,6 @@ abstract class _Column implements Column {
   int? get columnId;
   @override
   @JsonKey(ignore: true)
-  _$$ColumnImplCopyWith<_$ColumnImpl> get copyWith =>
+  _$$HighQColumnImplCopyWith<_$HighQColumnImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -14,35 +14,35 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-HighQISheetColumnList _$HighQISheetColumnListFromJson(
+HighQiSheetColumnList _$HighQiSheetColumnListFromJson(
     Map<String, dynamic> json) {
   return _HighQISheetColumnList.fromJson(json);
 }
 
 /// @nodoc
-mixin _$HighQISheetColumnList {
-  List<Column>? get column => throw _privateConstructorUsedError;
+mixin _$HighQiSheetColumnList {
+  List<HighQColumn>? get column => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $HighQISheetColumnListCopyWith<HighQISheetColumnList> get copyWith =>
+  $HighQiSheetColumnListCopyWith<HighQiSheetColumnList> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HighQISheetColumnListCopyWith<$Res> {
-  factory $HighQISheetColumnListCopyWith(HighQISheetColumnList value,
-          $Res Function(HighQISheetColumnList) then) =
-      _$HighQISheetColumnListCopyWithImpl<$Res, HighQISheetColumnList>;
+abstract class $HighQiSheetColumnListCopyWith<$Res> {
+  factory $HighQiSheetColumnListCopyWith(HighQiSheetColumnList value,
+          $Res Function(HighQiSheetColumnList) then) =
+      _$HighQiSheetColumnListCopyWithImpl<$Res, HighQiSheetColumnList>;
   @useResult
-  $Res call({List<Column>? column});
+  $Res call({List<HighQColumn>? column});
 }
 
 /// @nodoc
-class _$HighQISheetColumnListCopyWithImpl<$Res,
-        $Val extends HighQISheetColumnList>
-    implements $HighQISheetColumnListCopyWith<$Res> {
-  _$HighQISheetColumnListCopyWithImpl(this._value, this._then);
+class _$HighQiSheetColumnListCopyWithImpl<$Res,
+        $Val extends HighQiSheetColumnList>
+    implements $HighQiSheetColumnListCopyWith<$Res> {
+  _$HighQiSheetColumnListCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -58,26 +58,26 @@ class _$HighQISheetColumnListCopyWithImpl<$Res,
       column: freezed == column
           ? _value.column
           : column // ignore: cast_nullable_to_non_nullable
-              as List<Column>?,
+              as List<HighQColumn>?,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$HighQISheetColumnListImplCopyWith<$Res>
-    implements $HighQISheetColumnListCopyWith<$Res> {
+    implements $HighQiSheetColumnListCopyWith<$Res> {
   factory _$$HighQISheetColumnListImplCopyWith(
           _$HighQISheetColumnListImpl value,
           $Res Function(_$HighQISheetColumnListImpl) then) =
       __$$HighQISheetColumnListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Column>? column});
+  $Res call({List<HighQColumn>? column});
 }
 
 /// @nodoc
 class __$$HighQISheetColumnListImplCopyWithImpl<$Res>
-    extends _$HighQISheetColumnListCopyWithImpl<$Res,
+    extends _$HighQiSheetColumnListCopyWithImpl<$Res,
         _$HighQISheetColumnListImpl>
     implements _$$HighQISheetColumnListImplCopyWith<$Res> {
   __$$HighQISheetColumnListImplCopyWithImpl(_$HighQISheetColumnListImpl _value,
@@ -93,7 +93,7 @@ class __$$HighQISheetColumnListImplCopyWithImpl<$Res>
       column: freezed == column
           ? _value._column
           : column // ignore: cast_nullable_to_non_nullable
-              as List<Column>?,
+              as List<HighQColumn>?,
     ));
   }
 }
@@ -101,14 +101,15 @@ class __$$HighQISheetColumnListImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HighQISheetColumnListImpl implements _HighQISheetColumnList {
-  _$HighQISheetColumnListImpl({final List<Column>? column}) : _column = column;
+  _$HighQISheetColumnListImpl({final List<HighQColumn>? column})
+      : _column = column;
 
   factory _$HighQISheetColumnListImpl.fromJson(Map<String, dynamic> json) =>
       _$$HighQISheetColumnListImplFromJson(json);
 
-  final List<Column>? _column;
+  final List<HighQColumn>? _column;
   @override
-  List<Column>? get column {
+  List<HighQColumn>? get column {
     final value = _column;
     if (value == null) return null;
     if (_column is EqualUnmodifiableListView) return _column;
@@ -118,7 +119,7 @@ class _$HighQISheetColumnListImpl implements _HighQISheetColumnList {
 
   @override
   String toString() {
-    return 'HighQISheetColumnList(column: $column)';
+    return 'HighQiSheetColumnList(column: $column)';
   }
 
   @override
@@ -149,15 +150,15 @@ class _$HighQISheetColumnListImpl implements _HighQISheetColumnList {
   }
 }
 
-abstract class _HighQISheetColumnList implements HighQISheetColumnList {
-  factory _HighQISheetColumnList({final List<Column>? column}) =
+abstract class _HighQISheetColumnList implements HighQiSheetColumnList {
+  factory _HighQISheetColumnList({final List<HighQColumn>? column}) =
       _$HighQISheetColumnListImpl;
 
   factory _HighQISheetColumnList.fromJson(Map<String, dynamic> json) =
       _$HighQISheetColumnListImpl.fromJson;
 
   @override
-  List<Column>? get column;
+  List<HighQColumn>? get column;
   @override
   @JsonKey(ignore: true)
   _$$HighQISheetColumnListImplCopyWith<_$HighQISheetColumnListImpl>

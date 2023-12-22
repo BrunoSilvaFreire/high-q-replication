@@ -14,33 +14,33 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-HighQiSheet _$HighQiSheetFromJson(Map<String, dynamic> json) {
+HighQiSheetList _$HighQiSheetListFromJson(Map<String, dynamic> json) {
   return _HighQiSheet.fromJson(json);
 }
 
 /// @nodoc
-mixin _$HighQiSheet {
+mixin _$HighQiSheetList {
   List<Isheet>? get isheet => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $HighQiSheetCopyWith<HighQiSheet> get copyWith =>
+  $HighQiSheetListCopyWith<HighQiSheetList> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HighQiSheetCopyWith<$Res> {
-  factory $HighQiSheetCopyWith(
-          HighQiSheet value, $Res Function(HighQiSheet) then) =
-      _$HighQiSheetCopyWithImpl<$Res, HighQiSheet>;
+abstract class $HighQiSheetListCopyWith<$Res> {
+  factory $HighQiSheetListCopyWith(
+          HighQiSheetList value, $Res Function(HighQiSheetList) then) =
+      _$HighQiSheetListCopyWithImpl<$Res, HighQiSheetList>;
   @useResult
   $Res call({List<Isheet>? isheet});
 }
 
 /// @nodoc
-class _$HighQiSheetCopyWithImpl<$Res, $Val extends HighQiSheet>
-    implements $HighQiSheetCopyWith<$Res> {
-  _$HighQiSheetCopyWithImpl(this._value, this._then);
+class _$HighQiSheetListCopyWithImpl<$Res, $Val extends HighQiSheetList>
+    implements $HighQiSheetListCopyWith<$Res> {
+  _$HighQiSheetListCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -63,7 +63,7 @@ class _$HighQiSheetCopyWithImpl<$Res, $Val extends HighQiSheet>
 
 /// @nodoc
 abstract class _$$HighQiSheetImplCopyWith<$Res>
-    implements $HighQiSheetCopyWith<$Res> {
+    implements $HighQiSheetListCopyWith<$Res> {
   factory _$$HighQiSheetImplCopyWith(
           _$HighQiSheetImpl value, $Res Function(_$HighQiSheetImpl) then) =
       __$$HighQiSheetImplCopyWithImpl<$Res>;
@@ -74,7 +74,7 @@ abstract class _$$HighQiSheetImplCopyWith<$Res>
 
 /// @nodoc
 class __$$HighQiSheetImplCopyWithImpl<$Res>
-    extends _$HighQiSheetCopyWithImpl<$Res, _$HighQiSheetImpl>
+    extends _$HighQiSheetListCopyWithImpl<$Res, _$HighQiSheetImpl>
     implements _$$HighQiSheetImplCopyWith<$Res> {
   __$$HighQiSheetImplCopyWithImpl(
       _$HighQiSheetImpl _value, $Res Function(_$HighQiSheetImpl) _then)
@@ -114,7 +114,7 @@ class _$HighQiSheetImpl implements _HighQiSheet {
 
   @override
   String toString() {
-    return 'HighQiSheet(isheet: $isheet)';
+    return 'HighQiSheetList(isheet: $isheet)';
   }
 
   @override
@@ -144,7 +144,7 @@ class _$HighQiSheetImpl implements _HighQiSheet {
   }
 }
 
-abstract class _HighQiSheet implements HighQiSheet {
+abstract class _HighQiSheet implements HighQiSheetList {
   factory _HighQiSheet({final List<Isheet>? isheet}) = _$HighQiSheetImpl;
 
   factory _HighQiSheet.fromJson(Map<String, dynamic> json) =

@@ -42,8 +42,8 @@ class HomePageState extends ConsumerState<HomePage>
       builder: (context) => DomainsPage(),
     ),
     HomeView(
-      tab: (context) => const Tab(text: "States", icon: Icon(Icons.camera_alt)),
-      builder: (context) => StatesPage(),
+      tab: (context) => const Tab(text: "Snapshots", icon: Icon(Icons.camera_alt)),
+      builder: (context) => SnapshotsPage(),
     )
   ];
 

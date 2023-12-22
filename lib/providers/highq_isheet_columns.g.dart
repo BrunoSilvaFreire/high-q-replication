@@ -7,7 +7,7 @@ part of 'highq_isheet_columns.dart';
 // **************************************************************************
 
 String _$highQISheetColumnsHash() =>
-    r'eedbf1324a8fcf9989f94904164f8a5a10fbbe71';
+    r'b9e59bbf5a3f0bd0d3f0c6bebcf61522a5a52f66';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,11 +31,11 @@ class _SystemHash {
 }
 
 abstract class _$HighQISheetColumns
-    extends BuildlessAutoDisposeAsyncNotifier<HighQISheetColumnList?> {
+    extends BuildlessAutoDisposeAsyncNotifier<HighQiSheetColumnList?> {
   late final int sheetId;
   late final HighQDomain domain;
 
-  FutureOr<HighQISheetColumnList?> build(
+  FutureOr<HighQiSheetColumnList?> build(
     int sheetId,
     HighQDomain domain,
   );
@@ -47,7 +47,7 @@ const highQISheetColumnsProvider = HighQISheetColumnsFamily();
 
 /// See also [HighQISheetColumns].
 class HighQISheetColumnsFamily
-    extends Family<AsyncValue<HighQISheetColumnList?>> {
+    extends Family<AsyncValue<HighQiSheetColumnList?>> {
   /// See also [HighQISheetColumns].
   const HighQISheetColumnsFamily();
 
@@ -89,7 +89,7 @@ class HighQISheetColumnsFamily
 
 /// See also [HighQISheetColumns].
 class HighQISheetColumnsProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    HighQISheetColumns, HighQISheetColumnList?> {
+    HighQISheetColumns, HighQiSheetColumnList?> {
   /// See also [HighQISheetColumns].
   HighQISheetColumnsProvider(
     int sheetId,
@@ -126,7 +126,7 @@ class HighQISheetColumnsProvider extends AutoDisposeAsyncNotifierProviderImpl<
   final HighQDomain domain;
 
   @override
-  FutureOr<HighQISheetColumnList?> runNotifierBuild(
+  FutureOr<HighQiSheetColumnList?> runNotifierBuild(
     covariant HighQISheetColumns notifier,
   ) {
     return notifier.build(
@@ -156,7 +156,7 @@ class HighQISheetColumnsProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
   @override
   AutoDisposeAsyncNotifierProviderElement<HighQISheetColumns,
-      HighQISheetColumnList?> createElement() {
+      HighQiSheetColumnList?> createElement() {
     return _HighQISheetColumnsProviderElement(this);
   }
 
@@ -178,7 +178,7 @@ class HighQISheetColumnsProvider extends AutoDisposeAsyncNotifierProviderImpl<
 }
 
 mixin HighQISheetColumnsRef
-    on AutoDisposeAsyncNotifierProviderRef<HighQISheetColumnList?> {
+    on AutoDisposeAsyncNotifierProviderRef<HighQiSheetColumnList?> {
   /// The parameter `sheetId` of this provider.
   int get sheetId;
 
@@ -188,7 +188,7 @@ mixin HighQISheetColumnsRef
 
 class _HighQISheetColumnsProviderElement
     extends AutoDisposeAsyncNotifierProviderElement<HighQISheetColumns,
-        HighQISheetColumnList?> with HighQISheetColumnsRef {
+        HighQiSheetColumnList?> with HighQISheetColumnsRef {
   _HighQISheetColumnsProviderElement(super.provider);
 
   @override

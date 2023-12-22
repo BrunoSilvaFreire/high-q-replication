@@ -12,7 +12,7 @@ part 'highq_isheet_columns.g.dart';
 @riverpod
 class HighQISheetColumns extends _$HighQISheetColumns {
   @override
-  Future<HighQISheetColumnList?> build(int sheetId, HighQDomain domain) async {
+  Future<HighQiSheetColumnList?> build(int sheetId, HighQDomain domain) async {
     var api = ref.watch(highQDomainAPIRegistryProvider.call(domain));
 
     var future = api.whenOrNull(
@@ -21,7 +21,7 @@ class HighQISheetColumns extends _$HighQISheetColumns {
           "/isheets/$sheetId/columns"
         );
         var json = jsonDecode(response.body);
-        return HighQISheetColumnList.fromJson(json);
+        return HighQiSheetColumnList.fromJson(json);
       },
     );
     if (future != null) {

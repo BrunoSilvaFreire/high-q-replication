@@ -4,13 +4,13 @@ part 'column.freezed.dart';
 part 'column.g.dart';
 
 @freezed
-class Column with _$Column {
-  factory Column({
+class HighQColumn with _$HighQColumn {
+  factory HighQColumn({
     String? title,
     String? type,
     bool? mendatory,
     @JsonKey(name: 'columnID') int? columnId
-  }) = _Column;
+  }) = _HighQColumn;
 
-  factory Column.fromJson(Map<String, dynamic> json) => _$ColumnFromJson(json);
+  factory HighQColumn.fromJson(Map<String, dynamic> json) => _$HighQColumnFromJson(json);
 }

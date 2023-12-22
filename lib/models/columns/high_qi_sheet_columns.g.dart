@@ -10,7 +10,7 @@ _$HighQISheetColumnListImpl _$$HighQISheetColumnListImplFromJson(
         Map<String, dynamic> json) =>
     _$HighQISheetColumnListImpl(
       column: (json['column'] as List<dynamic>?)
-          ?.map((e) => Column.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => HighQColumn.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
